@@ -36,8 +36,10 @@ modules:
   - type: archive
     url: https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7.tar.gz
     sha256: 600dccf13bca3e4179fa6ff554220ce4ba67ffc72bce1ac3bf74c2599c03a0ca
-  - type: patch
-    path: ruby-no-openssl.patch
+  - type: shell
+    commands:
+    - rm -rf ext/openssl
+    - cp -p /usr/share/automake-*/config.{sub,guess} .
   cleanup:
     - /bin
     - /lib/*.a
