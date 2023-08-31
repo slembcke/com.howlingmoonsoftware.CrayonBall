@@ -9,7 +9,7 @@ index a42897f..65a7f59 100755
 -ruby_dir = 'ruby-1.8.7'
 +if target_machine.cpu_family() == 'x86_64'
 +	ruby_dir = '/app/lib/ruby/1.8/x86_64-linux'
-+elif target_machine.cpu_family() == 'x86_64'
++elif target_machine.cpu_family() == 'aarch64'
 +	ruby_dir = '/app/lib/ruby/1.8/aarch64-linux'
 +endif
  
