@@ -5,57 +5,57 @@ sdk: org.freedesktop.Sdk
 command: crayonball
 
 finish-args:
-- --device=dri
-- --share=ipc
-- --socket=fallback-x11
-- --socket=wayland
-- --socket=pulseaudio
+  - --device=dri
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --socket=pulseaudio
 
 modules:
-- shared-modules/SDL2/SDL2-with-libdecor.json
-- shared-modules/glu/glu-9.json
-- name: openal-soft
-  buildsystem: cmake-ninja
-  sources:
-  - type: archive
-    url: https://openal-soft.org/openal-releases/openal-soft-1.23.1.tar.bz2
-    sha256: 796f4b89134c4e57270b7f0d755f0fa3435b90da437b745160a49bd41c845b21
-    x-checker-data:
-      type: anitya
-      stable-only: true
-      project-id: 8172
-      url-template: https://openal-soft.org/openal-releases/openal-soft-$version.tar.bz2
-  cleanup:
-    - /bin
-    - /include
-    - /lib/cmake
-    - /lib/pkgconfig
-    - /share
-- name: Ruby
-  sources:
-  - type: archive
-    url: https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7.tar.gz
-    sha256: 600dccf13bca3e4179fa6ff554220ce4ba67ffc72bce1ac3bf74c2599c03a0ca
-  - type: shell
-    commands:
-    - rm -rf ext/openssl
-    - cp -p /usr/share/automake-*/config.{sub,guess} .
-  cleanup:
-    - /bin
-    - /lib/*.a
-    - /lib/ruby
-    - /share
-- name: CrayonBall
-  buildsystem: meson
-  sources:
-  - type: git
-    url: https://github.com/slembcke/CrayonBall.git
-    tag: v2.3.2
-    commit: 2e98737c858c636d52750b5220be577dc646c045
-    x-checker-data:
-      type: git
-      tag-pattern: ^v([\d.]+)$
-  - type: patch
-    path: crayonball-ruby.patch
-  cleanup: 
-    - /lib
+  - shared-modules/SDL2/SDL2-with-libdecor.json
+  - shared-modules/glu/glu-9.json
+  - name: openal-soft
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://openal-soft.org/openal-releases/openal-soft-1.24.3.tar.bz2
+        sha256: cb5e6197a1c0da0edcf2a81024953cc8fa8545c3b9474e48c852af709d587892
+        x-checker-data:
+          type: anitya
+          stable-only: true
+          project-id: 8172
+          url-template: https://openal-soft.org/openal-releases/openal-soft-$version.tar.bz2
+    cleanup:
+      - /bin
+      - /include
+      - /lib/cmake
+      - /lib/pkgconfig
+      - /share
+  - name: Ruby
+    sources:
+      - type: archive
+        url: https://cache.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7.tar.gz
+        sha256: 600dccf13bca3e4179fa6ff554220ce4ba67ffc72bce1ac3bf74c2599c03a0ca
+      - type: shell
+        commands:
+          - rm -rf ext/openssl
+          - cp -p /usr/share/automake-*/config.{sub,guess} .
+    cleanup:
+      - /bin
+      - /lib/*.a
+      - /lib/ruby
+      - /share
+  - name: CrayonBall
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/slembcke/CrayonBall.git
+        tag: v2.3.2
+        commit: 2e98737c858c636d52750b5220be577dc646c045
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+      - type: patch
+        path: crayonball-ruby.patch
+    cleanup:
+      - /lib
