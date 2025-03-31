@@ -50,8 +50,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/slembcke/CrayonBall.git
-        tag: v2.3.2
-        commit: 2e98737c858c636d52750b5220be577dc646c045
+        tag: v2.3.3
+        commit: c726ca71e3bfce440409673fcf4af0bd483f4a7f
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
